@@ -1,6 +1,7 @@
 /* global _ */
 /* exported makeQueue */
 
+var queueMethods = {};
 
 var makeQueue = function() {
   var instance = Object.create(queueMethods);
@@ -13,10 +14,10 @@ var makeQueue = function() {
   return instance;
 };
 
-var queueMethods = {};
+
 
 queueMethods.enqueue = function(value){
-    this.storage[this.topQueue++] = value;
+  this.storage[this.topQueue++] = value;
 };
 
 queueMethods.dequeue = function(){
