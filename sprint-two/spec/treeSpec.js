@@ -24,6 +24,18 @@ describe("tree", function() {
     assert.isTrue(tree.contains(5));
   });
 
+  it("should have a parent value", function () {
+    tree.addChild(5);
+    tree.children[0].hasOwnProperty('parent');
+  });
+
+  it("should be able to remove its own parent", function () {
+    tree.addChild(5);
+    var treeChild = tree.children[0];
+    treeChild.removeFromParent();
+    expect(treeChild.parent).to.equal(null);
+  });
+
   it("should return false for a value that was not added", function(){
     tree.addChild(5);
     assert.isFalse(tree.contains(6));
