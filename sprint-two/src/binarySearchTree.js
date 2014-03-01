@@ -53,6 +53,46 @@ treeMethods.contains = function(target) {
   return false;
 };
 
-treeMethods.depthFirstLog = function() {
+treeMethods.depthFirstLog = function(callback) {
+  this.value = callback(this.value);
+  if (this.right !== null) {
+    this.right.depthFirstLog(callback);
+  }
 
+  if (this.left !== null) {
+    this.left.depthFirstLog(callback);
+  }
+};
+
+treeMethods.addNumbers = function(number) {
+  for (var i = 0; i < number; i++ ) {
+    var num = Math.floor(Math.random()*2000);
+    console.log(num);
+    this.insert(num);
+    console.log(this);
+  }
+};
+
+treeMethods.findClosestNumber = function (number) {
+  var closest = arguments[1] || undefined;
+
+  if (this.value === number) {
+    return number;
+  }
+
+  if (closest === undefined) {
+    closest = this.value;
+  }
+
+  if (Math.abs(this.value-number) < Math.abs(closest-number)) {
+    closest = this.value;
+  }
+
+  if ((number > this.value) && (this.right)) {
+    closest = this.right.findClosestNumber(number, closest);
+  } else if(this.left) {
+    closest = this.left.findClosestNumber(number, closest);
+  }
+
+  return closest;
 };
