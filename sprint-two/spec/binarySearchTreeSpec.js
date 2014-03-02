@@ -39,4 +39,14 @@ describe("binarySearchTree", function() {
     assert.notStrictEqual(array, [5,2,3]);
   });
 
+  it("should iterate through the tree in a breadth-first manner", function(){
+    binarySearchTree.insert(4);
+    binarySearchTree.insert(6);
+    binarySearchTree.insert(3);
+    binarySearchTree.insert(2);
+    binarySearchTree.insert(7);
+    binarySearchTree.insert(9);
+    binarySearchTree.breadthLog();
+  });
+
 });

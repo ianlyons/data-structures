@@ -1,4 +1,7 @@
+var treeMethods = {};
+
 var makeBinarySearchTree = function(value){
+
   var extend = function (obj, obj2) {
     for (var key in obj2) {
       obj[key] = obj2[key];
@@ -13,7 +16,6 @@ var makeBinarySearchTree = function(value){
   return newTree;
 };
 
-var treeMethods = {};
 
 treeMethods.insert = function(value) {
   var newNode = makeBinarySearchTree(value);
@@ -51,6 +53,24 @@ treeMethods.contains = function(target) {
     }
   }
   return false;
+};
+
+treeMethods.breadthLog = function () {
+  // instantiate queue
+  var queue = [];
+  // add self
+  queue.push(this);
+  // while queue length is greater 0
+  while (queue.length > 0) {
+    var thisNode = queue.shift();
+    console.log(thisNode.value);
+    if (thisNode.left) {
+      queue.push(thisNode.left);
+    }
+    if (thisNode.right) {
+      queue.push(thisNode.right);
+    }
+  }
 };
 
 treeMethods.depthFirstLog = function(callback) {

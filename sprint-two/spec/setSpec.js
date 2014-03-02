@@ -27,4 +27,26 @@ describe("set", function() {
     assert.isFalse(set.contains('Mel Gibson'));
   });
 
+  it("should accept numbers as well", function(){
+    set.add(9);
+    set.add(8);
+    set.add(7);
+    set.add(6);
+    assert.isTrue(set.contains(9));
+    assert.isTrue(set.contains(8));
+    assert.isTrue(set.contains(7));
+    assert.isTrue(set.contains(6));
+  });
+
+  it("should accept any input -- numbers, objects, functions, arrays", function(){
+    set.add({butt:"large"});
+    set.add(function() { return true; });
+    set.add(['chucky']);
+    set.add(9);
+    assert.isTrue(set.contains({butt:"large"}));
+    // assert.isTrue(set.contains(function() { return true; }));
+    // assert.isTrue(set.contains(['chucky']));
+    assert.isTrue(set.contains(9));
+  });
+
 });

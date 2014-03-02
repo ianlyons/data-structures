@@ -56,4 +56,16 @@ describe("tree", function() {
     assert.isTrue(tree.contains(8));
   });
 
+  it("should call traverse on every value of the tree", function () {
+    tree.addChild(5);
+    tree.addChild(6);
+    tree.addChild(7);
+    tree.addChild(8);
+    tree.children[0].addChild(10);
+    tree.children[1].addChild(11);
+    tree.traverse(function () { this.value *=2});
+    assert.isTrue(tree.contains(20));
+    assert.isTrue(tree.contains(14));
+  });
+
 });

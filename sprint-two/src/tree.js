@@ -1,3 +1,5 @@
+var treeMethods = {};
+
 var makeTree = function(value){
 
   var extend = function (obj, obj2) {
@@ -11,10 +13,10 @@ var makeTree = function(value){
   newTree.value = value;
   newTree.children = [];
   newTree.parent = null;
+  console.log(newTree);
   return newTree;
 };
 
-var treeMethods = {};
 
 treeMethods.addChild = function(value){
   var node = makeTree(value);
@@ -34,6 +36,15 @@ treeMethods.contains = function(target){
   }
 
   return false;
+};
+
+treeMethods.traverse = function (callback) {
+  callback.apply(this,arguments);
+
+  for (var i = 0; i < this.children.length; i++) {
+    this.children[i].traverse(callback);
+  }
+
 };
 
 treeMethods.removeFromParent = function() {
